@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel del Administrador - Tienda de Ropa</title>
+  <link rel="stylesheet" href="index.css">
+  <script defer src="productos.js"></script>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <img src="img/veloura.svg" alt="veloura" height="80px">
+      <nav>
+        <a href="indexLog.html">Cerrar Sesion</a>
+
+      </nav>
+      
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2>Gestión de usuarios</h2>
+
+      <form id="formUsuarioAgregar" class="admin-form">
+        <input type="hidden" id="editingUsuarioId">
+        <label>Nombre de usuario:</label>
+        <input type="text" id="usuarioNombre" required>
+
+        <label>Rol:</label>
+        <input type="text" id="usuarioRol" required>
+
+        <label>Mail:</label>
+        <input type="email" id="usuarioMail" required>
+
+        <label>Contraseña:</label>
+        <input type="password" id="usuarioPassword" required><br>
+
+        <button id="submitUsuario" type="submit">Agregar usuario</button>
+      </form>
+    </section>
+
+       <section>
+         <h2>Contacto con usuarios</h2>
+         <form id="formCorreo" class="admin-form">
+           <label for="destinatarios">Destinatarios:</label>
+           <select id="destinatarios" required>
+             <option value="todos">Todos los usuarios</option>
+             <option value="clientes">Clientes</option>
+             <option value="equipo">Administradores y vendedores</option>
+           </select>
+           <label for="asunto">Asunto:</label>
+           <input id="asunto" type="text" required>
+           <label for="mensaje">Mensaje:</label>
+           <textarea id="mensaje" rows="4" required></textarea>
+           <button type="submit">Preparar correo</button>
+         </form>
+       </section>
+
+    <section>
+      <h3>Usuarios añadidos</h3>
+      <table id="tablaUsuarios">
+        <thead>
+          <tr>
+            <th>Usuario</th>
+            <th>Rol</th>
+            <th>Mail</th>
+            <th>Contraseña</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </section>
+
+ <section>
+      <h2>Gestión de Productos</h2>
+
+      <form id="formProductoAgregar">
+        <input type="hidden" id="editingId">
+        <label>Nombre del producto:</label>
+        <input type="text" id="nombre" required>
+
+        <label>Precio:</label>
+        <input type="number" id="precio" step="0.01" required>
+
+        <label>Stock:</label>
+        <input type="number" id="stock" min="0" step="1" required>
+
+        <label>Descripción:</label>
+        <textarea id="descripcion" rows="3" required></textarea>
+
+        <label>Imagen (URL):</label>
+        <input type="text" id="imagen" placeholder="Ruta o URL de la imagen" required>
+
+        <button id="submitProducto" type="submit">Agregar producto</button>
+      </form>
+    </section>
+
+     <section>
+      <h3>Productos añadidos</h3>
+      <table id="tablaProductosVendedor">
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Imagen</th>
+            <th>Stock</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 veloura<br>veloura@gmail.com</p>
+  </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('formCorreo').addEventListener('submit', event => {
+        event.preventDefault();
+        const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [
+          { rol: 'Administrador', mail: 'admin@veloura.com' },
+          { rol: 'Vendedor', mail: 'vendedor@veloura.com' }
+        ];
+        const tipo = document.getElementById('destinatarios').value;
+        const destinatarios = usuarios
+          .filter(usuario => tipo === 'todos' ||
+            (tipo === 'clientes' && !/admin|vendedor/i.test(usuario.rol || '')) ||
+            (tipo === 'equipo' && /admin|vendedor/i.test(usuario.rol || '')))
+          .map(usuario => usuario.mail)
+          .join(',');
+        if (!destinatarios) return alert('No hay usuarios registrados para este grupo.');
+        const asunto = encodeURIComponent(document.getElementById('asunto').value);
+        const mensaje = encodeURIComponent(document.getElementById('mensaje').value);
+        window.location.href = `mailto:${destinatarios}?subject=${asunto}&body=${mensaje}`;
+      });
+    });
+  </script>
+</body>
+</html>

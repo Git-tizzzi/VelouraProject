@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda de Ropa - Invitado</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="img/veloura.svg" alt="veloura" height="80px">
+            <nav>
+                <a href="#">Inicio</a>
+                <a href="#Productos">Productos</a>
+                <a href="#Contacto">Contacto</a>
+            </nav>
+            <button id="btn-loginusr" class="btn-loginusr" onclick="window.location.href='indexLog.html'">Acceder</button>
+            <button id="btn-carrito-header" class="btn-carrito-header">
+             Carrito <span id="contador-carrito" class="contador-carrito">0</span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        
+        <a name=Productos><h2 id="Prods">Catálogo de productos</h2></a>
+        
+        <!-- cards de los productos -->
+        <div class="productos-container">
+          
+            <div class="card-producto">
+                <div class="imagen-container">
+                   
+                </div>
+                <div class="producto-info">
+                    <h3 class="producto-nombre">Remera Chrome Hearts</h3>
+                    <p class="producto-precio">$48.500</p>
+                    <button class="btn-carrito">Agregar al carrito</button>
+                </div>
+            </div>
+
+          
+            <div class="card-producto">
+                <div class="imagen-container">
+                   
+                </div>
+                <div class="producto-info">
+                    <h3 class="producto-nombre">Pantalón True Religion BC</h3>
+                    <p class="producto-precio">$84.500</p>
+                    <button class="btn-carrito">Agregar al carrito</button>
+                </div>
+            </div>
+
+           
+            <div class="card-producto">
+                <div class="imagen-container">
+                   
+                </div>
+                <div class="producto-info">
+                    <h3 class="producto-nombre">Campera Moncler WHITE</h3>
+                    <p class="producto-precio">$220.000</p>
+                    <button class="btn-carrito">Agregar al carrito</button>
+                </div>
+            </div>
+        </div>
+
+        
+    </main>
+
+    
+    <div id="modal-carrito" class="modal-carrito">
+        <div class="carrito-contenido">
+            <div class="carrito-header">
+                <h2>Carrito de Compras</h2>
+                <button id="cerrar-carrito" class="cerrar-carrito">&times;</button>
+            </div>
+            <div id="items-carrito" class="items-carrito">
+                <p class="carrito-vacio">Tu carrito está vacío</p>
+            </div>
+            <div class="carrito-footer">
+                <div class="total-carrito">
+                    <h3>Total: <span id="total-precio">$0</span></h3>
+                </div>
+                <button id="btn-comprar" class="btn-comprar">Proceder a Compra</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <a name=Contacto><p>© 2026 veloura <br> veloura@gmail.com</p></a>
+    </footer>
+    
+    <script src="productos.js"></script>
+    <script src="carrito.js"></script>
+</body>
+</html>

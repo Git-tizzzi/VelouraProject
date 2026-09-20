@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 200" width="100%" height="100%">
+  <defs>
+    <filter id="grunge-effect">
+      <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="4" result="noise" />
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+  </defs>
+
+  <style>
+    .bg { fill: #000000; }
+    .border-main { fill: none; stroke: #ffffff; stroke-width: 6; stroke-dasharray: 15 8 35 10 5 5 40 8; filter: url(#grunge-effect); }
+    .border-inner { fill: none; stroke: #ffffff; stroke-width: 2; filter: url(#grunge-effect); }
+    .text-brand { font-family: 'Impact', 'Arial Black', sans-serif; font-size: 85px; fill: #ffffff; letter-spacing: 28px; filter: url(#grunge-effect); }
+    .text-ui { font-family: 'Courier New', monospace; font-weight: bold; font-size: 24px; fill: #ffffff; letter-spacing: 2px; filter: url(#grunge-effect); }
+    .scratch-line { stroke: #ffffff; stroke-width: 1.5; opacity: 0.85; filter: url(#grunge-effect); }
+    .ui-box { fill: none; stroke: #ffffff; stroke-width: 4; filter: url(#grunge-effect); }
+    .ui-block { fill: #ffffff; filter: url(#grunge-effect); }
+  </style>
+
+  <rect width="1000" height="200" class="bg" />
+
+  <rect x="10" y="10" width="980" height="180" rx="15" class="border-main" />
+  <rect x="16" y="16" width="968" height="168" rx="10" class="border-inner" opacity="0.4" />
+
+  <line x1="750" y1="10" x2="750" y2="190" class="ui-box" stroke-dasharray="20 10 5 5" />
+  
+  <text x="90" y="125" class="text-brand">VELOURA</text>
+  
+  <line x1="75" y1="104" x2="680" y2="104" class="scratch-line" />
+
+  <text x="765" y="50" class="text-ui">REC</text>
+  <polygon points="855,38 885,38 870,50" class="ui-block" />
+  <line x1="855" y1="48" x2="885" y2="48" stroke="#ffffff" stroke-width="3" filter="url(#grunge-effect)" />
+  
+  <text x="765" y="90" class="text-ui">SAVE</text>
+  <polygon points="855,78 885,78 870,90" class="ui-block" />
+  <line x1="855" y1="88" x2="885" y2="88" stroke="#ffffff" stroke-width="3" filter="url(#grunge-effect)" />
+
+  <line x1="750" y1="105" x2="990" y2="105" class="ui-box" />
+
+  <rect x="800" y="120" width="30" height="55" rx="5" class="ui-block" />
+  <rect x="845" y="120" width="30" height="55" rx="5" class="ui-block" />
+  <rect x="890" y="120" width="30" height="55" rx="5" class="ui-block" />
+  <rect x="935" y="120" width="30" height="55" rx="5" class="ui-box" stroke-width="3" />
+</svg>

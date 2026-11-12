@@ -5,143 +5,218 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Panel del Administrador - Tienda de Ropa</title>
   <link rel="stylesheet" href="css/index.css">
-  <script defer src="js/productos.js"></script>
+  <link rel="stylesheet" href="css/admin.css">
 </head>
 <body>
   <header>
     <div class="header-content">
-      <img src="img/veloura.svg" alt="veloura" height="80px">
+      <a href="index1.html">
+        <img src="img/veloura.svg" alt="veloura" height="80px">
+      </a>
       <nav>
-        <a href="indexLog.html">Cerrar Sesion</a>
-
+        <a href="index1.html">Ver tienda</a>
       </nav>
-      
+      <button class="btn-cerrar-sesion" data-logout">Cerrar sesión</button>
     </div>
   </header>
 
-  <main>
-    <section>
-      <h2>Gestión de usuarios</h2>
+  <main class="admin-main">
+    <div class="admin-layout">
+      <aside class="admin-sidebar">
+        <h3>Panel de administración</h3>
+        <p class="admin-correo" id="admin-nombre"></p>
+        <p class="admin-correo" id="admin-correo"></p>
+        <nav class="admin-nav">
+          <button class="admin-nav-btn active" data-section="resumen">Resumen</button>
+          <button class="admin-nav-btn" data-section="usuarios">Usuarios</button>
+          <button class="admin-nav-btn" data-section="ventas">Ventas</button>
+          <button class="admin-nav-btn" data-section="productos">Productos</button>
+          <button class="admin-nav-btn" data-section="contacto">Contacto</button>
+        </nav>
+        <button class="btn-cerrar-sesion" data-logout>Cerrar sesión</button>
+      </aside>
 
-      <form id="formUsuarioAgregar" class="admin-form">
-        <input type="hidden" id="editingUsuarioId">
-        <label>Nombre de usuario:</label>
-        <input type="text" id="usuarioNombre" required>
+      <div class="admin-content">
+        <section class="admin-panel active" data-panel="resumen">
+          <h2>Resumen</h2>
+          <div class="admin-tarjetas">
+            <div class="admin-tarjeta">
+              <span>Usuarios registrados</span>
+              <strong id="stat-usuarios">0</strong>
+            </div>
+            <div class="admin-tarjeta">
+              <span>Productos cargados</span>
+              <strong id="stat-productos">0</strong>
+            </div>
+            <div class="admin-tarjeta">
+              <span>Ventas de hoy</span>
+              <strong id="stat-ventas">0</strong>
+            </div>
+            <div class="admin-tarjeta">
+              <span>Ingresos de hoy</span>
+              <strong id="stat-ingresos">$0</strong>
+            </div>
+          </div>
+        </section>
 
-        <label>Rol:</label>
-        <input type="text" id="usuarioRol" required>
+        <section class="admin-panel" data-panel="usuarios">
+          <h2>Gestión de usuarios</h2>
 
-        <label>Mail:</label>
-        <input type="email" id="usuarioMail" required>
+          <form id="formUsuarioAgregar" class="admin-form">
+            <input type="hidden" id="editingUsuarioId">
 
-        <label>Contraseña:</label>
-        <input type="password" id="usuarioPassword" required><br>
+            <label for="usuarioNombre">Nombre y apellido</label>
+            <input type="text" id="usuarioNombre" required>
 
-        <button id="submitUsuario" type="submit">Agregar usuario</button>
-      </form>
-    </section>
+            <label for="usuarioRol">Rol</label>
+            <select id="usuarioRol" required>
+              <option value="Cliente">Cliente</option>
+              <option value="Vendedor">Vendedor</option>
+              <option value="Administrador">Administrador</option>
+            </select>
 
-       <section>
-         <h2>Contacto con usuarios</h2>
-         <form id="formCorreo" class="admin-form">
-           <label for="destinatarios">Destinatarios:</label>
-           <select id="destinatarios" required>
-             <option value="todos">Todos los usuarios</option>
-             <option value="clientes">Clientes</option>
-             <option value="equipo">Administradores y vendedores</option>
-           </select>
-           <label for="asunto">Asunto:</label>
-           <input id="asunto" type="text" required>
-           <label for="mensaje">Mensaje:</label>
-           <textarea id="mensaje" rows="4" required></textarea>
-           <button type="submit">Preparar correo</button>
-         </form>
-       </section>
+            <label for="usuarioMail">Mail</label>
+            <input type="email" id="usuarioMail" required>
 
-    <section>
-      <h3>Usuarios añadidos</h3>
-      <table id="tablaUsuarios">
-        <thead>
-          <tr>
-            <th>Usuario</th>
-            <th>Rol</th>
-            <th>Mail</th>
-            <th>Contraseña</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-        </tbody>
-      </table>
-    </section>
+            <label for="usuarioPassword">Contraseña</label>
+            <input type="password" id="usuarioPassword" required>
 
- <section>
-      <h2>Gestión de Productos</h2>
+            <label for="usuarioDni">DNI</label>
+            <input type="text" id="usuarioDni" inputmode="numeric">
 
-      <form id="formProductoAgregar">
-        <input type="hidden" id="editingId">
-        <label>Nombre del producto:</label>
-        <input type="text" id="nombre" required>
+            <label for="usuarioDireccion">Dirección</label>
+            <input type="text" id="usuarioDireccion">
 
-        <label>Precio:</label>
-        <input type="number" id="precio" step="0.01" required>
+            <label for="usuarioTelefono">Teléfono</label>
+            <input type="tel" id="usuarioTelefono">
 
-        <label>Stock:</label>
-        <input type="number" id="stock" min="0" step="1" required>
+            <button id="submitUsuario" type="submit">Agregar usuario</button>
+          </form>
 
-        <label>Descripción:</label>
-        <textarea id="descripcion" rows="3" required></textarea>
+          <div class="tabla-container">
+            <table id="tablaUsuarios">
+              <thead>
+                <tr>
+                  <th>Usuario</th>
+                  <th>Rol</th>
+                  <th>Mail</th>
+                  <th>DNI</th>
+                  <th>Dirección</th>
+                  <th>Teléfono</th>
+                  <th>Contraseña</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+        </section>
 
-        <label>Imagen (URL):</label>
-        <input type="text" id="imagen" placeholder="Ruta o URL de la imagen" required>
+        <section class="admin-panel" data-panel="ventas">
+          <div class="ventas-encabezado">
+            <h2>Ventas del día</h2>
+            <p id="fecha-ventas"></p>
+            <button class="btn-actualizar" id="btn-actualizar-ventas" type="button">Actualizar</button>
+          </div>
 
-        <button id="submitProducto" type="submit">Agregar producto</button>
-      </form>
-    </section>
+          <div class="tabla-container">
+            <table id="tablaVentas">
+              <thead>
+                <tr>
+                  <th>Hora</th>
+                  <th>Cliente</th>
+                  <th>Productos</th>
+                  <th>Total</th>
+                  <th>Entrega</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+        </section>
 
-     <section>
-      <h3>Productos añadidos</h3>
-      <table id="tablaProductosVendedor">
-        <thead>
-          <tr>
-            <th>Producto</th>
-            <th>Nombre</th>
-            <th>Precio</th>
-            <th>Imagen</th>
-            <th>Stock</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-        </tbody>
-      </table>
-    </section>
+        <section class="admin-panel" data-panel="productos">
+          <h2>Gestión de Productos</h2>
+
+          <form id="formProductoAgregar" class="admin-form">
+            <input type="hidden" id="editingId">
+
+            <label for="nombre">Nombre del producto</label>
+            <input type="text" id="nombre" required>
+
+            <label for="precio">Precio</label>
+            <input type="number" id="precio" step="0.01" min="0" required>
+
+            <label for="stock">Stock</label>
+            <input type="number" id="stock" min="0" step="1" required>
+
+            <label for="descripcion">Descripción</label>
+            <textarea id="descripcion" rows="3"></textarea>
+
+            <label for="caracteristicas">Características</label>
+            <textarea id="caracteristicas" rows="3"></textarea>
+
+            <label for="imagen">Imagen principal (URL o ruta)</label>
+            <input type="text" id="imagen" placeholder="Ej: img/CH.jpg" required>
+
+            <label for="imagenes">Imágenes adicionales para el carrusel</label>
+            <textarea id="imagenes" rows="3" placeholder="Una URL por línea"></textarea>
+            <p class="form-ayuda">Escribí una ruta o URL por línea. La imagen principal también se muestra en el carrusel.</p>
+
+            <button id="submitProducto" type="submit">Agregar producto</button>
+          </form>
+
+          <h3 class="admin-subtitulo">Productos añadidos</h3>
+          <div class="tabla-container">
+            <table id="tablaProductosVendedor">
+              <thead>
+                <tr>
+                  <th>Producto</th>
+                  <th>Nombre</th>
+                  <th>Precio</th>
+                  <th>Imagen</th>
+                  <th>Stock</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="admin-panel" data-panel="contacto">
+          <h2>Contacto con usuarios</h2>
+
+          <form id="formCorreo" class="admin-form">
+            <label for="destinatarios">Destinatarios</label>
+            <select id="destinatarios" required>
+              <option value="todos">Todos los usuarios</option>
+              <option value="clientes">Clientes</option>
+              <option value="equipo">Administradores y vendedores</option>
+            </select>
+
+            <label for="asunto">Asunto</label>
+            <input id="asunto" type="text" required>
+
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" rows="4" required></textarea>
+
+            <button type="submit">Preparar correo</button>
+          </form>
+        </section>
+      </div>
+    </div>
   </main>
 
   <footer>
     <p>© 2026 veloura<br>veloura@gmail.com</p>
   </footer>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      document.getElementById('formCorreo').addEventListener('submit', event => {
-        event.preventDefault();
-        const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [
-          { rol: 'Administrador', mail: 'admin@veloura.com' },
-          { rol: 'Vendedor', mail: 'vendedor@veloura.com' }
-        ];
-        const tipo = document.getElementById('destinatarios').value;
-        const destinatarios = usuarios
-          .filter(usuario => tipo === 'todos' ||
-            (tipo === 'clientes' && !/admin|vendedor/i.test(usuario.rol || '')) ||
-            (tipo === 'equipo' && /admin|vendedor/i.test(usuario.rol || '')))
-          .map(usuario => usuario.mail)
-          .join(',');
-        if (!destinatarios) return alert('No hay usuarios registrados para este grupo.');
-        const asunto = encodeURIComponent(document.getElementById('asunto').value);
-        const mensaje = encodeURIComponent(document.getElementById('mensaje').value);
-        window.location.href = `mailto:${destinatarios}?subject=${asunto}&body=${mensaje}`;
-      });
-    });
-  </script>
+
+  <script src="js/datos.js"></script>
+  <script src="js/productos.js"></script>
+  <script src="js/admin.js"></script>
 </body>
 </html>

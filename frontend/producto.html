@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del producto - Veloura</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/producto.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="index1.html">
+                <img src="img/veloura.svg" alt="veloura" height="80px">
+            </a>
+            <nav>
+                <a href="index1.html">Inicio</a>
+                <a href="index1.html#Productos">Productos</a>
+                <a href="#Contacto">Contacto</a>
+            </nav>
+            <button id="btn-loginusr" class="btn-loginusr" onclick="window.location.href='indexLog.html'">Acceder</button>
+            <button id="btn-carrito-header" class="btn-carrito-header">
+                Carrito <span id="contador-carrito" class="contador-carrito">0</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="detalle-main">
+        <a class="volver-catalogo" href="index1.html">← Volver al catálogo</a>
+
+        <section id="detalle-producto" class="detalle-producto"></section>
+
+        <section class="relacionados">
+            <h2>Productos relacionados</h2>
+            <div id="relacionados-container" class="relacionados-container"></div>
+        </section>
+    </main>
+
+    <div id="modal-carrito" class="modal-carrito">
+        <div class="carrito-contenido">
+            <div class="carrito-header">
+                <h2>Carrito de Compras</h2>
+                <button id="cerrar-carrito" class="cerrar-carrito">&times;</button>
+            </div>
+            <div id="items-carrito" class="items-carrito">
+                <p class="carrito-vacio">Tu carrito está vacío</p>
+            </div>
+            <div class="carrito-footer">
+                <div class="checkout-entrega">
+                    <label for="tipo-entrega">Tipo de entrega</label>
+                    <select id="tipo-entrega">
+                        <option value="local">Retiro en el local</option>
+                        <option value="domicilio">Envío a domicilio</option>
+                    </select>
+                </div>
+                <div class="total-carrito">
+                    <h3>Total: <span id="total-precio">$0</span></h3>
+                </div>
+                <button id="btn-comprar" class="btn-comprar">Proceder a Compra</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <a name="Contacto"><p>© 2026 veloura <br> veloura@gmail.com</p></a>
+    </footer>
+
+    <script src="js/datos.js"></script>
+    <script src="js/carrito.js"></script>
+    <script src="js/producto.js"></script>
+</body>
+</html>

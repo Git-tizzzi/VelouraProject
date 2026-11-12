@@ -1,18 +1,16 @@
 body {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     margin: 0;
-    background-image: url("img/FrutigerBack2.jpg");
-    background-size: cover; 
-    background-position: center center; 
+    background-image: url("../img/FrutigerBack2.jpg");
+    background-size: cover;
+    background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    min-height: 100vh; 
-    padding: 0; 
+    min-height: 100vh;
+    padding: 0;
     display: flex;
     flex-direction: column;
-    
 }
-
 
 header {
     background-color: black;
@@ -21,54 +19,106 @@ header {
     text-align: center;
 }
 
+header img {
+    display: inline-block;
+}
+
+header a {
+    text-decoration: none;
+}
+
+header h1 {
+    margin: 10px 0 0;
+    font-size: 22px;
+}
+
 main {
     padding: 20px;
     flex: 1;
     display: flex;
     justify-content: center;
-    align-items: center;
-}
-
-main:has(.login-box) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-main:not(:has(.login-box)) {
-    display: block;
+    align-items: flex-start;
 }
 
 .login-box {
     background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
-    padding: 40px;
+    padding: 35px;
     border-radius: 15px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
     width: 100%;
-    max-width: 400px;
+    max-width: 460px;
     text-align: center;
+    margin: 20px 0;
 }
 
 .login-box h2 {
     color: #333;
     margin-top: 0;
-    margin-bottom: 30px;
-    font-size: 24px;
+    margin-bottom: 25px;
+    font-size: 22px;
     font-weight: 600;
 }
 
-form {
+.login-tabs {
+    display: flex;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 25px;
+}
+
+.login-tab {
+    flex: 1;
+    margin: 0;
+    padding: 12px 10px;
+    width: auto;
+    background-color: #f0f0f0;
+    color: #333;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    font-size: 15px;
+}
+
+.login-tab:hover {
+    background-color: #e2e2e2;
+    transform: none;
+}
+
+.login-tab.active {
+    background: linear-gradient(135deg, #474747 0%, #2a2a2a 100%);
+    color: white;
+    font-weight: 600;
+}
+
+.login-form {
+    display: none;
     background-color: transparent;
     padding: 0;
     border: none;
     width: 100%;
+    text-align: left;
 }
 
-input {
+.login-form.active {
+    display: block;
+}
+
+form label {
+    display: block;
+    margin-top: 14px;
+    margin-bottom: 6px;
+    color: #333;
+    font-weight: 500;
+    text-align: left;
+    font-size: 14px;
+}
+
+form input {
     width: 100%;
     height: 40px;
     padding: 10px;
-    margin-top: 4px;
+    margin-top: 0;
     box-sizing: border-box;
     border: 2px solid #e0e0e0;
     border-radius: 8px;
@@ -76,38 +126,17 @@ input {
     transition: all 0.3s ease;
 }
 
-input:focus {
+form input:focus {
     outline: none;
     border-color: #474747;
     box-shadow: 0 0 8px rgba(71, 71, 71, 0.2);
 }
 
-input::placeholder {
+form input::placeholder {
     color: #999;
 }
 
-select {
-    width: 100%;
-    height: 40px;
-    padding: 10px;
-    margin-top: 4px;
-    box-sizing: border-box;
-    border: 2px solid #e0e0e0;
-    border-radius: 8px;
-    font-size: 14px;
-    background-color: white;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    color: #333;
-}
-
-select:focus {
-    outline: none;
-    border-color: #474747;
-    box-shadow: 0 0 8px rgba(71, 71, 71, 0.2);
-}
-
-button {
+form button {
     margin-top: 25px;
     padding: 12px 30px;
     background: linear-gradient(135deg, #474747 0%, #2a2a2a 100%);
@@ -122,16 +151,15 @@ button {
     box-shadow: 0 4px 15px rgba(71, 71, 71, 0.3);
 }
 
-button:hover {
+form button:hover {
     background: linear-gradient(135deg, #5a5a5a 0%, #333333 100%);
     box-shadow: 0 6px 20px rgba(71, 71, 71, 0.4);
     transform: translateY(-2px);
 }
 
-button:active {
+form button:active {
     transform: translateY(0);
 }
-
 
 footer {
     background-color: #474747;
